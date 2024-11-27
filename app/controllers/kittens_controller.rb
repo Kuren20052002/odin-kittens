@@ -1,5 +1,5 @@
 class KittensController < ApplicationController
-  before_action :set_kitten, only: [ :show, :edit, :update ]
+  before_action :set_kitten, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @kittens = Kitten.all
@@ -17,7 +17,7 @@ class KittensController < ApplicationController
       redirect_to kittens_path
     else
       flash.now[:errors] = @kitten.errors.full_messages.to_sentence
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,8 +31,14 @@ class KittensController < ApplicationController
       redirect_to kittens_path
     else
       flash.now[:errors] = @kitten.errors.full_messages.to_sentence
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @kitten.destroy
+    flash[:success] = "Kitten was successfully ******."
+    redirect_to kittens_path
   end
 
   private

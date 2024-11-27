@@ -1,0 +1,24 @@
+<h1>Kittens</h1>
+<%= link_to "New Kitten", new_kitten_path %>
+
+<div>
+  <% if flash.present? %>
+    <% flash.each do |key, msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<br>
+
+<div>
+  <% @kittens.each_with_index do |kitten, idx| %>
+    <div>
+      <h2>Kitten #<%= idx + 1 %></h2>
+      <div><%= render "kitten", kitten: kitten%></div>
+      <%= link_to "Edit Kitten", edit_kitten_path(kitten) %>
+      <%= link_to "Kitten's Details", kitten_path(kitten) %>
+      <hr>
+    </div>
+  <% end %>
+</div>

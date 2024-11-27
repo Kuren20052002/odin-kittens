@@ -1,0 +1,17 @@
+<h1>Edit Kitten: </h1>
+
+<% if @kitten.errors.any? %>
+  <div class="alert alert-error">
+    <ul>
+      <% @kitten.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<div>
+  <%= render "kitten_form", kitten: @kitten %>
+  <%= link_to "****** Kitten", kitten_path(@kitten), method: :delete%>
+</div>

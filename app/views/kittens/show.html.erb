@@ -1,0 +1,4 @@
+<div>
+  <%= render "kitten", kitten: @kitten %>
+  <%= link_to "****** Kitten", kitten_path(@kitten), data: { turbo_method: :delete}%>
+</div>
